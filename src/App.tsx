@@ -2,7 +2,7 @@ import * as React from "react";
 
 import styled from "styled-components";
 
-import logo from "./logo.svg";
+import Canvas from "./Canvas";
 
 const AppContainer = styled.div`
   text-align: center;
@@ -10,31 +10,13 @@ const AppContainer = styled.div`
 
 const AppHeader = styled.header`
   background-color: #222;
-  height: 150px;
+  height: 4rem;
   padding: 20px;
   color: white;
 `;
 
-const AppIntro = styled.p`
-  font-size: large;
-`;
-
 const AppTitle = styled.h1`
-  font-size: 1.5em;
-`;
-
-const AppLogo = styled.img`
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  font-size: 2em;
 `;
 
 class App extends React.Component {
@@ -42,12 +24,9 @@ class App extends React.Component {
     return (
       <AppContainer>
         <AppHeader>
-          <AppLogo src={logo} alt="logo" />
-          <AppTitle>Welcome to React</AppTitle>
+          <AppTitle>Canvas Doodles</AppTitle>
         </AppHeader>
-        <AppIntro>
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </AppIntro>
+        <Canvas />
       </AppContainer>
     );
   }
