@@ -2,20 +2,23 @@ import * as React from "react";
 
 import styled from "styled-components";
 
+import Doodle from "./Doodles/Doodle";
+
 const Container = styled.div`
   border: 1px solid white;
   width: 128px;
   height: 128px;
-  :first-child {
-  }
 `;
 
-class Canvas extends React.Component {
+interface Props {
+  doodle: Doodle;
+}
+
+class Canvas extends React.Component<Props, object> {
   private canvasRef: React.RefObject<HTMLCanvasElement>;
   private ctx: CanvasRenderingContext2D | null;
-  private x = 0;
 
-  constructor(props: object) {
+  constructor(props: Props) {
     super(props);
     this.canvasRef = React.createRef();
     this.animate = this.animate.bind(this);
@@ -27,7 +30,7 @@ class Canvas extends React.Component {
     }
 
     this.ctx = this.canvasRef.current.getContext("2d");
-
+    this.props.doodle.init();
     requestAnimationFrame(this.animate);
   }
 
@@ -43,18 +46,9 @@ class Canvas extends React.Component {
     if (!this.ctx) {
       return;
     }
-    this.ctx.fillStyle = "black";
-    this.ctx.fillRect(0, 0, 128, 128);
 
-    this.ctx.fillStyle = "white";
-
-    this.ctx.fillRect(this.x, 64, 5, 5);
-
-    this.x++;
-
-    if (this.x > 128) {
-      this.x = 0;
-    }
+    this.props.doodle.update();
+    this.props.doodle.draw(this.ctx);
     requestAnimationFrame(this.animate);
   }
 }

@@ -4,6 +4,8 @@ import styled from "styled-components";
 
 import Canvas from "./Canvas";
 
+import DoodleList from "./Doodles/DoodleList";
+
 const AppContainer = styled.div`
   text-align: center;
 `;
@@ -19,6 +21,17 @@ const AppTitle = styled.h1`
   font-size: 2em;
 `;
 
+const CanvasContainer = styled.div`
+  width: 100%;
+`;
+
+const CanvasGrid = styled.div`
+  margin: auto;
+  display: grid;
+  grid-template-columns: 128px 128px 128px 128px 128px;
+  justify-content: center;
+`;
+
 class App extends React.Component {
   public render() {
     return (
@@ -26,7 +39,13 @@ class App extends React.Component {
         <AppHeader>
           <AppTitle>Canvas Doodles</AppTitle>
         </AppHeader>
-        <Canvas />
+        <CanvasContainer>
+          <CanvasGrid>
+            {DoodleList.map((doodle, index) => {
+              return <Canvas key={index} doodle={doodle} />;
+            })}
+          </CanvasGrid>
+        </CanvasContainer>
       </AppContainer>
     );
   }
