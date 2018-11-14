@@ -23,13 +23,17 @@ const AppTitle = styled.h1`
 
 const CanvasContainer = styled.div`
   width: 100%;
+  margin-top: 2rem;
 `;
 
 const CanvasGrid = styled.div`
+  width: 100%;
   margin: auto;
   display: grid;
-  grid-template-columns: 128px 128px 128px 128px 128px;
   justify-content: center;
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+  grid-template-columns: repeat(auto-fill, 128px);
 `;
 
 class App extends React.Component {

@@ -6,13 +6,11 @@ const screenSize = 128;
 
 export class DailyDoodle implements Doodle {
   public init() {
-    // tslint:disable-next-line:no-console
-    console.log("Init");
+    // nop
   }
 
   public update() {
-    // tslint:disable-next-line:no-console
-    console.log("update");
+    // nop
   }
 
   public draw(ctx: CanvasRenderingContext2D) {
