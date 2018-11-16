@@ -14,7 +14,7 @@ export class DailyDoodle implements Doodle {
     this.points = [];
     this.colors = [];
     for (let i = 0; i < pointCount; i++) {
-      const p = new Point();
+      const p = new Point(0, 0);
       p.x = Math.floor(Math.random() * 128);
       p.y = Math.floor(Math.random() * 128);
       this.points.push(p);
