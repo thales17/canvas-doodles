@@ -4,30 +4,37 @@ import { RandomColor } from "./Colors";
 
 const screenSize = 128;
 const countMax = 10;
-
+const frameMax = 3;
 export class DailyDoodle implements Doodle {
   private count = 0;
   private countDir = 1;
+  private frame = 0;
   private colors: string[];
   public init() {
-    this.colors = [];
-    for (let i = 0; i < countMax; i++) {
-      this.colors.push(RandomColor());
-    }
+    this.colorReset();
   }
 
   public update() {
-    this.count += this.countDir;
-    if (this.count >= countMax || this.count < 0) {
-      this.countDir *= -1;
+    this.frame++;
+    if (this.frame >= frameMax) {
+      this.count += this.countDir;
+      if (this.count >= countMax || this.count < 0) {
+        this.countDir *= -1;
+        if (this.count < 0) {
+          this.colorReset();
+        }
+      }
+      this.frame = 0;
     }
   }
 
   public draw(ctx: CanvasRenderingContext2D) {
     ctx.clearRect(0, 0, screenSize, screenSize);
-    ctx.lineWidth = 2;
-    ctx.fillStyle = RandomColor();
-    this.drawHex(ctx, 64, 64, 64);
+    const radiusStep = Math.floor(100 / countMax);
+    for (let i = this.count; i >= 0; i--) {
+      ctx.fillStyle = this.colors[i];
+      this.drawHex(ctx, 64, 64, i * radiusStep);
+    }
   }
 
   private drawHex(
@@ -48,5 +55,12 @@ export class DailyDoodle implements Doodle {
     ctx.lineTo(r + x, y);
 
     ctx.fill();
+  }
+
+  private colorReset() {
+    this.colors = [];
+    for (let i = 0; i < countMax; i++) {
+      this.colors.push(RandomColor());
+    }
   }
 }
