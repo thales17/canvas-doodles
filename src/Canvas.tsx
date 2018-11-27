@@ -12,6 +12,8 @@ const Container = styled.div`
 
 interface Props {
   doodle: Doodle;
+  className?: string;
+  children?: React.ReactNode;
 }
 
 class Canvas extends React.Component<Props, object> {
@@ -34,10 +36,15 @@ class Canvas extends React.Component<Props, object> {
     requestAnimationFrame(this.animate);
   }
 
+  public componentDidUpdate() {
+    this.props.doodle.init();
+  }
+
   public render() {
     return (
-      <Container>
+      <Container className={this.props.className}>
         <canvas width={128} height={128} ref={this.canvasRef} />
+        {this.props.children}
       </Container>
     );
   }
