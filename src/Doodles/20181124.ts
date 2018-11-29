@@ -1,6 +1,7 @@
 import Doodle from "./Doodle";
 
 import { Colors } from "./Colors";
+import { drawHex } from "./Hex";
 
 const screenSize = 128;
 const size = 8;
@@ -45,33 +46,13 @@ export class DailyDoodle implements Doodle {
       const r = Math.floor(i / gridCount);
       if (r % 2 === 0) {
         if (c % 2 === 0) {
-          this.drawHex(ctx, c * size, r * halfSize, halfSize);
+          drawHex(ctx, c * size, r * halfSize, halfSize);
         }
       } else {
         if (c % 2 === 1) {
-          this.drawHex(ctx, c * size, r * halfSize, halfSize);
+          drawHex(ctx, c * size, r * halfSize, halfSize);
         }
       }
     }
-  }
-
-  private drawHex(
-    ctx: CanvasRenderingContext2D,
-    x: number,
-    y: number,
-    r: number
-  ) {
-    const v1 = 0.866;
-    const v2 = 0.5;
-    ctx.beginPath();
-    ctx.moveTo(r + x, y);
-    ctx.lineTo(r * v2 + x, r * v1 + y);
-    ctx.lineTo(r * v2 * -1 + x, r * v1 + y);
-    ctx.lineTo(r * -1 + x, y);
-    ctx.lineTo(r * v2 * -1 + x, r * v1 * -1 + y);
-    ctx.lineTo(r * v2 + x, r * v1 * -1 + y);
-    ctx.lineTo(r + x, y);
-
-    ctx.fill();
   }
 }
