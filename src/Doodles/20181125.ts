@@ -37,6 +37,7 @@ export class DailyDoodle implements Doodle {
     ctx.fillStyle = Colors.white;
     const x = Math.floor((screenSize - cloudWidth) / 2);
     const y = cloudOffset;
+    ctx.beginPath();
     ctx.moveTo(x, y);
     ctx.quadraticCurveTo(x + 10, y - 13, x + 20, y);
     ctx.quadraticCurveTo(x + 30, y - 10, x + 40, y);
