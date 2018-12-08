@@ -19,6 +19,7 @@ interface Props {
 class Canvas extends React.Component<Props, object> {
   private canvasRef: React.RefObject<HTMLCanvasElement>;
   private ctx: CanvasRenderingContext2D | null;
+  private rID: number | null;
 
   constructor(props: Props) {
     super(props);
@@ -33,11 +34,17 @@ class Canvas extends React.Component<Props, object> {
 
     this.ctx = this.canvasRef.current.getContext("2d");
     this.props.doodle.init();
-    requestAnimationFrame(this.animate);
+    this.rID = requestAnimationFrame(this.animate);
   }
 
   public componentDidUpdate() {
     this.props.doodle.init();
+  }
+
+  public componentWillUnmount() {
+    if (this.rID) {
+      cancelAnimationFrame(this.rID);
+    }
   }
 
   public render() {
@@ -56,7 +63,7 @@ class Canvas extends React.Component<Props, object> {
 
     this.props.doodle.update();
     this.props.doodle.draw(this.ctx);
-    requestAnimationFrame(this.animate);
+    this.rID = requestAnimationFrame(this.animate);
   }
 }
 

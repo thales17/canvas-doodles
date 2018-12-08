@@ -6,6 +6,8 @@ import Canvas from "./Canvas";
 
 import DoodleList from "./Doodles/DoodleList";
 
+import { RouteComponentProps } from "react-router-dom";
+
 const size = 128;
 const CanvasContainer = styled.div`
   width: 100%;
@@ -29,14 +31,11 @@ interface State {
   index: number;
 }
 
-interface Props {
-  index?: number
-}
-
-class CanvasTV extends React.Component<Props, State> {
-  constructor(props: Props) {
+class CanvasTV extends React.Component<RouteComponentProps<any>, State> {
+  constructor(props: RouteComponentProps<any>) {
     super(props);
-    this.state = { index: (props.index) ? props.index : 0 };
+    const doodleIndex = props.match.params.doodleIndex;
+    this.state = { index: doodleIndex ? doodleIndex : 0 };
     this.incrementIndex = this.incrementIndex.bind(this);
     this.decrementIndex = this.decrementIndex.bind(this);
   }
@@ -45,10 +44,6 @@ class CanvasTV extends React.Component<Props, State> {
     return (
       <CanvasContainer>
         <StyledCanvas doodle={DoodleList[this.state.index]} />
-        <div>
-          <button onClick={this.decrementIndex} />
-          <button onClick={this.incrementIndex} />
-        </div>
       </CanvasContainer>
     );
   }

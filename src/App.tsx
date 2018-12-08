@@ -6,7 +6,7 @@ import CanvasGrid from "./CanvasGrid";
 
 import CanvasTV from "./CanvasTV";
 
-import { BrowserRouter as Router, Route} from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const AppContainer = styled.div`
   text-align: center;
@@ -27,13 +27,13 @@ class App extends React.Component {
   public render() {
     return (
       <Router>
-      <AppContainer>
-        <AppHeader>
-          <AppTitle>Canvas Doodles</AppTitle>
-        </AppHeader>
-        <Route path="/" exact={true} component={CanvasGrid} />
-        <Route path="/canvas/" component={CanvasTV} />
-      </AppContainer>
+        <AppContainer>
+          <AppHeader>
+            <AppTitle>Canvas Doodles</AppTitle>
+          </AppHeader>
+          <Route path="/" exact={true} component={CanvasGrid} />
+          <Route path="/canvas/:doodleIndex" component={CanvasTV} />
+        </AppContainer>
       </Router>
     );
   }

@@ -29,7 +29,11 @@ class CanvasGrid extends React.Component {
       <CanvasContainer>
         <Grid>
           {DoodleList.map((doodle, index) => {
-            return (<Link key={index} to="/canvas"><Canvas  doodle={doodle} /></Link>);
+            return (
+              <Link key={index} to={"/canvas/" + index}>
+                <Canvas doodle={doodle} />
+              </Link>
+            );
           })}
         </Grid>
       </CanvasContainer>
