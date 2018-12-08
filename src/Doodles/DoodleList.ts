@@ -23,8 +23,10 @@ import { DailyDoodle as D20181203 } from "./20181203";
 import { DailyDoodle as D20181204 } from "./20181204";
 import { DailyDoodle as D20181205 } from "./20181205";
 import { DailyDoodle as D20181206 } from "./20181206";
+import { DailyDoodle as D20181207 } from "./20181207";
 
 const DoodleList = [
+  new D20181207(),
   new D20181206(),
   new D20181205(),
   new D20181204(),

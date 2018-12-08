@@ -29,10 +29,14 @@ interface State {
   index: number;
 }
 
-class CanvasTV extends React.Component<object, State> {
-  constructor(props: object) {
+interface Props {
+  index?: number
+}
+
+class CanvasTV extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
-    this.state = { index: 0 };
+    this.state = { index: (props.index) ? props.index : 0 };
     this.incrementIndex = this.incrementIndex.bind(this);
     this.decrementIndex = this.decrementIndex.bind(this);
   }

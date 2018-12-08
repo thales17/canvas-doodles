@@ -6,6 +6,8 @@ import Canvas from "./Canvas";
 
 import DoodleList from "./Doodles/DoodleList";
 
+import { Link } from "react-router-dom";
+
 const CanvasContainer = styled.div`
   width: 100%;
   margin-top: 2rem;
@@ -27,7 +29,7 @@ class CanvasGrid extends React.Component {
       <CanvasContainer>
         <Grid>
           {DoodleList.map((doodle, index) => {
-            return <Canvas key={index} doodle={doodle} />;
+            return (<Link key={index} to="/canvas"><Canvas  doodle={doodle} /></Link>);
           })}
         </Grid>
       </CanvasContainer>

@@ -2,8 +2,11 @@ import * as React from "react";
 
 import styled from "styled-components";
 
-// import CanvasGrid from "./CanvasGrid";
+import CanvasGrid from "./CanvasGrid";
+
 import CanvasTV from "./CanvasTV";
+
+import { BrowserRouter as Router, Route} from "react-router-dom";
 
 const AppContainer = styled.div`
   text-align: center;
@@ -23,12 +26,15 @@ const AppTitle = styled.h1`
 class App extends React.Component {
   public render() {
     return (
+      <Router>
       <AppContainer>
         <AppHeader>
           <AppTitle>Canvas Doodles</AppTitle>
         </AppHeader>
-        <CanvasTV />
+        <Route path="/" exact={true} component={CanvasGrid} />
+        <Route path="/canvas/" component={CanvasTV} />
       </AppContainer>
+      </Router>
     );
   }
 }
