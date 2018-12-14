@@ -66,9 +66,9 @@ class Canvas extends React.Component<Props, object> {
     if (this.canvasRef.current && this.frameCount < 300) {
       this.frameCount++;
       // tslint:disable-next-line:no-console
-      console.log("frame_" + this.frameCount);
+      // console.log("frame_" + this.frameCount);
       // tslint:disable-next-line:no-console
-      console.log(this.canvasRef.current.toDataURL("image/png"));
+      // console.log(this.canvasRef.current.toDataURL("image/png"));
     }
 
     this.rID = requestAnimationFrame(this.animate);
