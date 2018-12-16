@@ -4,15 +4,7 @@ import sys
 import os
 import glob
 
-# imageDataFile = ""
-# if len(sys.argv) > 1:
-#     imageDataFile = sys.argv[1]
-
-# if imageDataFile == "":
-#     print("Specify the imageData text file")
-#     sys.exit()
-
-for imageDataFile in glob.glob("20181209.txt"):
+for imageDataFile in glob.glob("20181114.txt"):
     print("Creating gif from %s" % imageDataFile)
 
     with open(imageDataFile) as f:
@@ -20,8 +12,8 @@ for imageDataFile in glob.glob("20181209.txt"):
     content = [x.strip() for x in content]
     cleanedContent = []
     for l in content:
-        if l.startswith("Canvas.tsx:71"):
-            cleanedContent.append(l[37:])
+        if l.startswith("data:image/png;base64,"):
+            cleanedContent.append(l[22:])
 
     os.system("rm *.gif")
     idx = 0

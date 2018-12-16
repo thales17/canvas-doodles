@@ -21,6 +21,7 @@ class Canvas extends React.Component<Props, object> {
   private ctx: CanvasRenderingContext2D | null;
   private rID: number | null;
   private frameCount: number = 0;
+	private imageDataStr = "";
   constructor(props: Props) {
     super(props);
     this.canvasRef = React.createRef();
@@ -65,12 +66,15 @@ class Canvas extends React.Component<Props, object> {
     this.props.doodle.draw(this.ctx);
     if (this.canvasRef.current && this.frameCount < 300) {
       this.frameCount++;
-      // tslint:disable-next-line:no-console
-      console.log("frame_" + this.frameCount);
-      // tslint:disable-next-line:no-console
-      console.log(this.canvasRef.current.toDataURL("image/png"));
-    }
+     	this.imageDataStr += "frame_"+this.frameCount+"\n";
+	this.imageDataStr += this.canvasRef.current.toDataURL("image/png") +"\n";
+	    if (this.frameCount === 300) {
+		// tslint:disable
+	    console.log(this.imageDataStr);
+	    // tslint:enable
 
+	    }
+    } 
     this.rID = requestAnimationFrame(this.animate);
   }
 }
